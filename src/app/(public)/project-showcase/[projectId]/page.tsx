@@ -1,0 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import ProjectDetailsCard from "@/components/modules/projectShowcase/ProjectDetailsCard";
+import { getProjectById } from "@/services/PostServices";
+
+const ProjectDetailsPage = async ({
+  params,
+}: {
+  params: Promise<{ projectId: string }>;
+}) => {
+  const { projectId } = await params;
+  const project = await getProjectById(projectId);
+
+  return <ProjectDetailsCard project={project} />;
+};
+
+export default ProjectDetailsPage;

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Home, PlusCircle, LogOut } from "lucide-react";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import handleLogout from "@/helpers/handleLogout";
 
 export default function Sidebar() {
@@ -27,6 +27,13 @@ export default function Sidebar() {
         >
           <PlusCircle className="h-4 w-4" />
           Create Blog
+        </Link>
+        <Link
+          href="/dashboard/create-project"
+          className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100 hover:text-black"
+        >
+          <PlusCircle className="h-4 w-4" />
+          Create Project
         </Link>
       </nav>
 

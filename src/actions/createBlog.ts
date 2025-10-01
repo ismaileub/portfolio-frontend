@@ -21,7 +21,7 @@ export const createBlog = async (data: FormData, token: string) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `${token}`,
     },
     body: JSON.stringify(modifiedData),
     credentials: "include",

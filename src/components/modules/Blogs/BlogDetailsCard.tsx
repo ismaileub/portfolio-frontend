@@ -13,7 +13,7 @@ export default function BlogDetailsCard({ blog }: { blog: any }) {
   const router = useRouter();
   const session = useSession();
 
-  if (!blog) {
+  if (!blog || !blog._id) {
     return (
       <div className="py-20 text-center text-gray-500">Blog not found.</div>
     );
@@ -45,7 +45,7 @@ export default function BlogDetailsCard({ blog }: { blog: any }) {
           {
             method: "DELETE",
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `${token}`,
             },
           }
         );

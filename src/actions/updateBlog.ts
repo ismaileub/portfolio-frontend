@@ -23,7 +23,7 @@ export const updateBlog = async (
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
       body: JSON.stringify(modifiedData),
       credentials: "include",
