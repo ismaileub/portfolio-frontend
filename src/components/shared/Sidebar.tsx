@@ -10,7 +10,7 @@ export default function Sidebar() {
   const session = useSession();
 
   return (
-    <aside className="flex h-screen w-64 flex-col border-r bg-black text-white">
+    <aside className="flex min-h-screen w-64 flex-col border-r bg-black text-white">
       {/* Top navigation */}
       <nav className="flex-1 space-y-2 p-4">
         <Link
@@ -34,6 +34,13 @@ export default function Sidebar() {
         >
           <PlusCircle className="h-4 w-4" />
           Create Project
+        </Link>
+        <Link
+          href="/dashboard/update-about-me"
+          className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100 hover:text-black"
+        >
+          <PlusCircle className="h-4 w-4" />
+          About me
         </Link>
       </nav>
 
