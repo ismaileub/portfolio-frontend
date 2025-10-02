@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function AdminAbout() {
+  const router = useRouter();
   const [form, setForm] = useState<any>({
     name: "",
     bio: "",
@@ -17,7 +19,7 @@ export default function AdminAbout() {
   });
 
   useEffect(() => {
-    fetch("/api/about")
+    fetch(`${process.env.NEXT_PUBLIC_BASE_API}/aboutMe`)
       .then((res) => res.json())
       .then((data) => {
         setForm({
@@ -36,7 +38,7 @@ export default function AdminAbout() {
         ...form,
         skills: form.skills.split(",").map((s: string) => s.trim()),
       };
-      await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/aboutMe`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/aboutMe`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -44,9 +46,17 @@ export default function AdminAbout() {
         },
         body: JSON.stringify(payload),
       });
-      toast.success("About Me updated successfully!");
-    } catch (err) {
+      const result = await res.json();
+      console.log(result._id);
+
+      if (result?._id) {
+        toast.success("About Me updated successfully!");
+        // setTimeout(() => router.push("/about-me"), 1000);
+        router.push("/about-me");
+      }
+    } catch (err: any) {
       toast.error("Failed to update About Me");
+      console.log(err);
     }
   };
 
@@ -90,6 +100,7 @@ export default function AdminAbout() {
   return (
     <form onSubmit={handleSubmit} className="max-w-5xl mx-auto p-6 space-y-4">
       {/* Basic Info */}
+      <label className="block font-semibold">Name</label>
       <input
         type="text"
         placeholder="Name"
@@ -97,12 +108,14 @@ export default function AdminAbout() {
         onChange={(e) => setForm({ ...form, name: e.target.value })}
         className="w-full border rounded px-3 py-2"
       />
+      <label className="block font-semibold">Bio</label>
       <textarea
         placeholder="Bio"
         value={form.bio}
         onChange={(e) => setForm({ ...form, bio: e.target.value })}
         className="w-full border rounded px-3 py-2 h-32"
       />
+      <label className="block font-semibold">Email</label>
       <input
         type="email"
         placeholder="Email"
@@ -110,6 +123,7 @@ export default function AdminAbout() {
         onChange={(e) => setForm({ ...form, email: e.target.value })}
         className="w-full border rounded px-3 py-2"
       />
+      <label className="block font-semibold">Phone</label>
       <input
         type="text"
         placeholder="Phone"
@@ -117,6 +131,7 @@ export default function AdminAbout() {
         onChange={(e) => setForm({ ...form, phone: e.target.value })}
         className="w-full border rounded px-3 py-2"
       />
+      <label className="block font-semibold">Skills</label>
       <input
         type="text"
         placeholder="Skills (comma separated)"
