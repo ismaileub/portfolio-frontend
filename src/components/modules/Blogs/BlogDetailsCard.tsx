@@ -69,15 +69,12 @@ export default function BlogDetailsCard({ blog }: { blog: any }) {
 
   return (
     <main className="max-w-4xl mx-auto py-10 px-4">
-      {/* Title */}
       <h1 className="text-5xl font-bold mb-6">{blog.title}</h1>
 
-      {/* Meta info */}
       <p className="text-gray-500 text-sm mb-6">
         {formattedDate} • {blog.views ?? 0} views
       </p>
 
-      {/* Thumbnail */}
       {blog.thumbnail && (
         <div className="relative h-80 w-full overflow-hidden mb-8">
           <Image
@@ -89,12 +86,10 @@ export default function BlogDetailsCard({ blog }: { blog: any }) {
         </div>
       )}
 
-      {/* Content */}
       <article className="prose prose-lg max-w-none">
         <p>{blog.content}</p>
       </article>
 
-      {/* Tags */}
       {blog.tags?.length > 0 && (
         <div className="mt-8 flex flex-wrap gap-2">
           {blog.tags.map((tag: string) => (

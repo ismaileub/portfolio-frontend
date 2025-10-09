@@ -101,6 +101,25 @@ const AboutMe = async () => {
           ))}
         </div>
       </div>
+      {/* Contact Info */}
+      <div className="flex justify-center gap-8 mt-4 text-gray-700 text-lg">
+        {about.email && (
+          <a
+            href={`mailto:${about.email}`}
+            className="hover:text-blue-600 transition"
+          >
+            Email: {about.email}
+          </a>
+        )}
+        {about.phone && (
+          <a
+            href={`tel:${about.phone}`}
+            className="hover:text-blue-600 transition"
+          >
+            Phone: {about.phone}
+          </a>
+        )}
+      </div>
     </section>
   );
 };

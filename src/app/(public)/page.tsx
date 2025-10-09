@@ -5,6 +5,7 @@ import ProjectCard from "@/components/modules/projectShowcase/ProjectCard";
 
 export default async function HomePage() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blog`, {
+    cache: "no-store",
     next: {
       tags: ["BLOGS"],
     },

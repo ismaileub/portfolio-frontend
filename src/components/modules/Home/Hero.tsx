@@ -1,44 +1,53 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default async function Hero() {
   return (
-    <div>
-      <div className="max-h-screen w-full relative">
-        {/* Crimson Depth */}
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            background:
-              "radial-gradient(125% 125% at 50% 100%, #000000 40%, #2b0707 100%)",
-          }}
-        />
+    <section className="relative w-full min-h-[600px] flex items-center bg-black text-white">
+      {/* Background Gradient */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(125% 125% at 50% 100%, #000000 40%, #2b0707 100%)",
+        }}
+      />
 
-        <section className="relative flex flex-col items-center justify-center text-center py-28 px-6 text-white">
-          {/* Headline */}
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight max-w-5xl leading-tight">
-            Read. Learn. Share. <br className="hidden md:block" />
-            Ideas That Shape the Future
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-20 flex flex-col md:flex-row items-center gap-12">
+        {/* Left: About Me */}
+        <div className="md:w-1/2 text-center md:text-left space-y-6">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+            Hi, I am Ismail Hossain
           </h1>
-
-          {/* Subheadline */}
-          <p className="mt-6 text-lg md:text-xl max-w-2xl">
-            Discover in-depth articles, tutorials, and thought-provoking stories
-            from a global network of creators. Stay updated with fresh insights
-            on technology, design, productivity, and personal growth—all in one
-            place.
+          <p className="text-lg md:text-xl text-gray-300">
+            I am a full-stack developer passionate about building modern web
+            applications with React, Next.js, Node.js, and Tailwind CSS. I love
+            creating interactive, responsive, and visually appealing projects.
           </p>
-
-          {/* CTA */}
-          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+          <div className="mt-6 flex justify-center md:justify-start gap-4">
             <Link
-              href="/blogs"
-              className="inline-flex items-center justify-center px-8 py-4 font-medium rounded-xl border border-input hover:bg-accent hover:text-accent-foreground transition"
+              href="project-showcase"
+              className="px-6 py-3 bg-blue-600 rounded-xl font-medium hover:bg-blue-500 transition"
             >
-              Explore Blogs
+              My Projects
+            </Link>
+            <Link
+              href="#contact"
+              className="px-6 py-3 border border-gray-500 rounded-xl font-medium hover:bg-gray-800 transition"
+            >
+              Contact Me
             </Link>
           </div>
-        </section>
+        </div>
+
+        {/* Right: Image */}
+        <div className="md:w-1/2 flex justify-center md:justify-end">
+          <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-600 shadow-lg">
+            <Image src="/me.png" alt="John Doe" fill className="object-cover" />
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
